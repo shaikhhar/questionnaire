@@ -3,28 +3,28 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'management',
+    path: 'manage',
     loadChildren: () =>
-      import('./management/manage.module').then((m) => m.ManageModule),
+      import('./pages/questions/manage/manage.module').then((m) => m.ManageModule),
   },
   {
     path: 'list',
-    loadChildren: () => import('./list/list.module').then((m) => m.ListModule),
+    loadChildren: () => import('./pages/questions/list/list.module').then((m) => m.ListModule),
   },
   {
     path: 'create',
     loadChildren: () =>
-      import('./create/create.module').then((m) => m.CreateModule),
+      import('./pages/questions/create/create.module').then((m) => m.CreateModule),
   },
   {
     path: 'edit',
-    loadChildren: () => import('./edit/edit.module').then((m) => m.EditModule),
+    loadChildren: () => import('./pages/questions/edit/edit.module').then((m) => m.EditModule),
   },
   {
     path: '**',
-    redirectTo: 'management',
+    redirectTo: 'manage',
   },
-  { path: '', pathMatch: 'full', redirectTo: 'management' },
+  { path: '', pathMatch: 'full', redirectTo: 'manage' },
 ];
 
 @NgModule({

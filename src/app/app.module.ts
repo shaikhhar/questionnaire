@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ManageComponent } from './management/manage.component';
+import { ManageComponent } from './pages/questions/manage/manage.component';
 
 @NgModule({
   declarations: [
