@@ -5,20 +5,20 @@ const routes: Routes = [
   {
     path: 'manage',
     loadChildren: () =>
-      import('./pages/questions/manage/manage.module').then((m) => m.ManageModule),
+      import('./modules/questions/components/manage/manage.module').then((m) => m.ManageModule),
   },
   {
     path: 'list',
-    loadChildren: () => import('./pages/questions/list/list.module').then((m) => m.ListModule),
+    loadChildren: () => import('./modules/questions/components/list/list.module').then((m) => m.ListModule),
   },
   {
     path: 'create',
     loadChildren: () =>
-      import('./pages/questions/create/create.module').then((m) => m.CreateModule),
+      import('./modules/questions/components/create/create.module').then((m) => m.CreateModule),
   },
   {
     path: 'edit',
-    loadChildren: () => import('./pages/questions/edit/edit.module').then((m) => m.EditModule),
+    loadChildren: () => import('./modules/questions/components/edit/edit.module').then((m) => m.EditModule),
   },
   {
     path: '**',
