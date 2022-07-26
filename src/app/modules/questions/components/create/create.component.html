@@ -1,1 +1,16 @@
-<p>create works!</p>
+<form [formGroup]="questionsForm">
+  <div class="form-control-container">
+    <label class="label">Question text:</label>
+    <input class="form-control" type="text" [formControlName]="'text'" required />
+  </div>
+
+  <div class="form-control-container">
+    <label class="label">Type:</label>
+    <div class="form-control">
+      <div class="radio-btn" *ngFor="let type of ['single', 'multiple', 'open']">
+        <input type="radio" name="type" value="type" />
+        <label for="type">{{ type }}</label>
+      </div>
+    </div>
+  </div>
+</form>

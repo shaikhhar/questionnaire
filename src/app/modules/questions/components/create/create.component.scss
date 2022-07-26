@@ -1,0 +1,23 @@
+.labels {
+    margin-right: 1rem;
+}
+
+.form-control-container {
+    margin-top: 1rem;
+    display: flex;
+    width: 80%;
+    justify-content: flex-start;
+
+    .label {
+        width: 25%;
+    }
+
+    .form-control {
+        width: 75%;
+    }
+
+    .radio-btn {
+        display: flex;
+        justify-content: justify-between;
+    }
+}
