@@ -46,7 +46,7 @@
       
             <div *ngIf="question.type === 'single'">
               <div *ngFor="let option of question.options; let i = index">
-              <input type="radio" name="option.option" [checked] = "question.answer === i"/>
+              <input type="radio" [checked] = "isIndexSelected(question.id, i)"/>
                 <label for="option">{{ option.option }}</label>
               </div>
             </div>

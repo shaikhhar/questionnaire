@@ -31,7 +31,6 @@ export class ListComponent implements OnInit {
   answer(id: number, answer: string | number | number[]) {
     this.questionsService.answerQuestion(id, answer);
     this.initQuestions();
-
   }
 
   activateQuestion(id: number) {
@@ -61,5 +60,9 @@ export class ListComponent implements OnInit {
     }
     this.activateQuestion(questionId);
     this.selectedOption = optionId;
+  }
+
+  isIndexSelected(questionId: number, index:number) {
+    return (this.answeredQuestions.find(q => q.id === questionId).answer as number) === index;
   }
 }
