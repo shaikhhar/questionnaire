@@ -20,7 +20,7 @@ export class QuestionsService {
   }
   
   createNewQuestion(question: IQuestion) {
-    const id = Math.max(...this.questions.map(q => q.id)) + 1;
+    const id = this.questions.length ? (Math.max(...this.questions.map(q => q.id)) + 1) : 1;
     const newQuestion = {...question, id, answer: null};
     this.questions = [newQuestion, ...this.questions];
     this.saveQuestionsLocal();
