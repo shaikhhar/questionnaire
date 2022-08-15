@@ -1,1 +1,55 @@
-<p>edit works!</p>
+<a [routerLink]="['/manage']" routerLinkActive="router-link-active" >Manage Questions</a>
+
+<form [formGroup]="questionForm">
+    <div class="form-control-container">
+      <label class="label">Question text:</label>
+      <input class="form-control" type="text" formControlName="text" required />
+      <div *ngIf="questionFormControls['text'].invalid && questionFormControls['text'].touched" class="error">Required</div>
+    </div>
+  
+    <div class="form-control-container">
+      <label class="label">Type:</label>
+      <div class="form-control">
+        <div
+          class="radio-btn"
+          *ngFor="let questionType of questionTypes"
+        >
+          <input type="radio" [value]="questionType" formControlName="type" (change) = "changeType(questionType)" />
+          <label for="questionType">{{ questionType }}</label>
+        </div>
+      </div>
+    </div>
+  
+    <div
+      *ngIf="
+        question.type === 'single' ||
+        question.type === 'multiple'
+      "
+    >
+      <div class="form-control-container">
+        <label class="label">Options: </label>
+        <div class="options-container" formArrayName="options">
+         <!-- every control of formArray is formGroup itself -->
+          <div class="options" *ngFor="let optionForm of optionForms; let i = index">
+            <div [formGroup]="optionForm">
+              <label class="label">Option {{i+1}}: </label>
+              <input
+                type="text"
+                class="option-input"
+                formControlName="option"
+                required
+              />
+            </div>
+           <div *ngIf="options.at(i).invalid && options.at(i).touched" class="error">Required</div>
+          </div>
+        </div>
+      </div>
+      <div class="add-option-btn">
+        <button (click)="addOption()">Add Option</button>
+      </div>
+    </div>
+  
+    <div class="form-control-container">
+      <button type="submit" (click)="update()">Update</button>
+    </div>
+  </form>

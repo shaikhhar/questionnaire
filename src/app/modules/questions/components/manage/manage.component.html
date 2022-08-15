@@ -1,2 +1,13 @@
 <p>Questions management</p>
 <button routerLink="/create">Create new Question</button>
+
+<div class="question-list">
+  <div class="question" *ngFor="let question of questions; let i = index">
+    <div class="text">{{ i + 1 }}. {{ question.text }}</div>
+    <div class="type">{{ question.type }}</div>
+    <div class="buttons">
+      <button [routerLink]="['/edit', question.id]" >Edit</button>
+      <button (click)="remove(question.id)" style="color: red">Remove</button>
+    </div>
+  </div>
+</div>

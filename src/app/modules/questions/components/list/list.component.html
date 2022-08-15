@@ -1,1 +1,62 @@
-<p>list works!</p>
+
+
+
+<div class="list">
+  <div class="unanswered">
+    <div class="card" *ngFor="let question of unansweredQuestions">
+      <p>Q: {{ question.text }}</p>
+
+      <div *ngIf="question.type === 'open'">
+        <textarea name="answer" id="" cols="30" rows="10" [(ngModel)]="text" (click)="activateQuestion(question.id)"> </textarea>
+        <div *ngIf="text && activeQuestionId === question.id">
+          <button (click)="answer(question.id, text)">answer</button>
+        </div>
+      </div>
+
+      <div *ngIf="question.type === 'single'">
+        <div *ngFor="let option of question.options; let i = index">
+        <input type="radio" name="option.option" (change) = "changeSelectedOption(question.id, i)" />
+          <label for="option">{{ option.option }}</label>
+        </div>
+        <div *ngIf="activeQuestionId === question.id && selectedOption !== undefined">
+            <button (click)="answer(question.id, selectedOption)">answer</button>
+          </div>
+      </div>
+
+      <div *ngIf="question.type === 'multiple'">
+        <div *ngFor="let option of question.options; let i = index">
+          <input type="checkbox" name="option.option" (change) = "toggleCheckedOption(question.id, i)" />
+          <label>{{ option.option }}</label>
+        </div>
+        <div *ngIf="activeQuestionId === question.id && checkedOptions.length > 0">
+            <button (click)="answer(question.id, checkedOptions)">answer</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="answered">
+    <div class="card" *ngFor="let question of answeredQuestions">
+            <p>Q: {{ question.text }}</p>
+      
+            <div *ngIf="question.type === 'open'">
+              <textarea name="answer" id="" cols="30" rows="10" [value]="question.answer"> </textarea>
+            </div>
+      
+            <div *ngIf="question.type === 'single'">
+              <div *ngFor="let option of question.options; let i = index">
+              <input type="radio" name="option.option" [checked] = "question.answer === i"/>
+                <label for="option">{{ option.option }}</label>
+              </div>
+            </div>
+      
+            <div *ngIf="question.type === 'multiple'">
+              <div *ngFor="let option of question.options; let i = index">
+                <input type="checkbox" name="option.option" [checked] = "isIndexChecked(question.id, i)" />
+                <label>{{ option.option }}</label>
+              </div>
+            </div>
+    </div>
+  </div>
+</div>

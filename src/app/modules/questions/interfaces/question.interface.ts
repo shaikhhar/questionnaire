@@ -1,10 +1,10 @@
 export interface IQuestion {
+    id: number;
     text: string;
-    type: 'single' | 'multiple' | 'open';
-    answer: IAnswerOption;
+    type: QuestionType;
+    options?: {option: string}[];
+    answer?: string | number | number[];
+    answerDate?: string;
 }
 
-export interface IAnswerOption {
-    options?: string[];
-    text?: string;
-}
+export type QuestionType = 'open' | 'single' | 'multiple';
